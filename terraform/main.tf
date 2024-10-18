@@ -41,6 +41,13 @@ resource "azurerm_public_ip" "main" {
   allocation_method   = "Dynamic"
 }
 
+resource "azurerm_public_ip" "secondary" {
+  name                = "main-pip"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  allocation_method   = "Dynamic"
+}
+
 resource "azurerm_virtual_machine" "main" {
   name                  = "main-vm"
   location              = azurerm_resource_group.main.location
